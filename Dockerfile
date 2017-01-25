@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ARG PROJECT_DIR "/home/project"
+ARG PROJECT_DIR="/home/project"
 
 ## Install dependencies to build yocto linux image and electron
 RUN apt-get update -qq \
