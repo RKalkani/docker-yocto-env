@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ARG PROJECT_DIR="/home/project"
+ARG PROJECT_DIR="/home/build/project"
 
 ## Install dependencies to build yocto linux image and electron
 RUN apt-get update -qq \
@@ -52,6 +52,12 @@ RUN apt-get update -qq \
 #	&& rm -rf /var/lib/apt/lists/* \
 #	/tmp/* \
 #	/var/tmp/*
+
+# Create a non-root user that will perform the actual build
+RUN id build 2>/dev/null || useradd --uid 30000 --create-home build
+RUN echo "build ALL=(ALL) NOPASSWD: ALL" | tee -a /etc/sudoers
+
+USER build
 
 RUN mkdir -p $PROJECT_DIR
 WORKDIR $PROJECT_DIR
