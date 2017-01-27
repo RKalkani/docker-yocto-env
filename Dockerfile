@@ -47,6 +47,14 @@ RUN apt-get update -qq \
     gperf \
     bison
 
+RUN apt-get update -qq && \
+    apt-get install -y -qq \
+    fakeroot \
+    ncurses-dev \
+    xz-utils \
+    libssl-dev \
+    bc
+
 # For development machine apt cache clean is not necessary
 # RUN apt-get clean \
 #	&& rm -rf /var/lib/apt/lists/* \
