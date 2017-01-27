@@ -55,6 +55,10 @@ RUN apt-get update -qq && \
     libssl-dev \
     bc
 
+RUN apt-get update -qq && \
+    apt-get install -y -qq \
+    cpio
+
 # For development machine apt cache clean is not necessary
 # RUN apt-get clean \
 #	&& rm -rf /var/lib/apt/lists/* \
